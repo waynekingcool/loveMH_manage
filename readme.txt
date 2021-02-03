@@ -13,3 +13,8 @@ login页面:
 3.用:model给表单绑定数据model, :rules设置好对应的验证规则
 4.给input 用v-model绑定对应的属性
 5.添加 /components/Home.vue文件,并且在路由中设置好对应的跳转路由 this.router.push('/home')
+
+home页面:
+1.用于展示后台数据
+2.使用element-ui框架的el-container el-aside el-main组件进行展示.
+3.点击退出按钮删除session中的token,然后跳转到login页面.

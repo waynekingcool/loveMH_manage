@@ -7,8 +7,6 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // axios
 import axios from 'axios'
-// 全局css
-// import './assets/css/global.css'
 
 axios.defaults.baseURL = 'http://127.0.0.1:3000/'
 Vue.prototype.$http = axios
