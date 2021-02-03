@@ -28,8 +28,8 @@ export default {
     data () {
         return {
             loginModel: {
-                username: 'king',
-                password: '123456'
+                username: 'zhangsan',
+                password: '123'
             },
             // 验证规则
             loginRules: {
@@ -47,11 +47,33 @@ export default {
     methods: {
         // 登录
         login: function () {
-            this.$router.push('/home')
+            this.$refs.loginFormRef.validate(async valid => {
+                if (!valid) return
+                const { data: res } = await this.$http.post('api/user/login', {
+                    userName: this.loginModel.username,
+                    password: this.loginModel.password
+                })
+                if(res.errno == 0) {
+                    this.$message({
+                        message: '登录成功',
+                        type: 'success'
+                    })
+                    //保存token
+                    window.sessionStorage.setItem('token', res.data)
+                    // 跳转到首页
+                    this.$router.push('/home')
+                }else {
+                    this.$message({
+                        message: res.message,
+                        type: 'error'
+                    })
+                }
+                
+            })
         },
-        // 充值
+        // 重置
         reset: function () {
-
+            this.$refs.loginFormRef.resetFields()
         }
     }
 }

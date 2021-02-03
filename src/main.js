@@ -10,7 +10,7 @@ import axios from 'axios'
 // 全局css
 // import './assets/css/global.css'
 
-
+axios.defaults.baseURL = 'http://127.0.0.1:3000/'
 Vue.prototype.$http = axios
 Vue.use(ElementUI)
 Vue.config.productionTip = false
