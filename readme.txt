@@ -6,4 +6,6 @@
 5.删除views文件下面不需要的视图,清理components里面默认的组件,清理App.vue文件中的代码.
 6.创建components/login/Login.vue文件,并且在router/index.js中引入,并设置好路由.
 
+login页面:
+
 
