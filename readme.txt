@@ -18,3 +18,7 @@ home页面:
 1.用于展示后台数据
 2.使用element-ui框架的el-container el-aside el-main组件进行展示.
 3.点击退出按钮删除session中的token,然后跳转到login页面.
+4.点击侧边栏菜单显示对应的内容,并且需要记录当前点击的path.
+
+User页面:
+1.用于展示用户列表
