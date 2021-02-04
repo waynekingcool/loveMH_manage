@@ -22,3 +22,5 @@ home页面:
 
 User页面:
 1.用于展示用户列表
+2.使用el-upload组件上传图片,该组件对于各种状态皆有对应的钩子函数,success error delete等等
+3.
