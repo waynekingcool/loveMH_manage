@@ -25,3 +25,4 @@ User页面:
 2.使用el-upload组件上传图片,该组件对于各种状态皆有对应的钩子函数,success error delete等等
 3.使用el-dialog组件显示添加用户界面,在el-dialog中插入el-form组件该表单组件绑定userModel,并且设置好ref属性,和添加校验规则addUserRules.
 4.使用el-switch组件用来处理isAdmin属性,该属性有change方法,在里面获取改变的值.
+5.使用el-table组件展示数据,el-table-column展示字段数据,如果需要在里面插入组件,可以使用template标签,加入slot-scope="scope",scope.row代表该行数据.
