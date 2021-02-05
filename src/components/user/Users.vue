@@ -18,6 +18,29 @@
                     <el-button type="primary" @click="dialogVisible = true">添加用户</el-button>
                 </el-col>
             </el-row>
+            <!-- 用户列表 -->
+            <el-table :data="usersList" style="width: 100%" stripe>
+                <!-- <el-table-column prop="id" label="id" width="180"></el-table-column> -->
+                <el-table-column type="index" label="序号"></el-table-column>
+                <el-table-column prop="userName" label="用户名" width="180"></el-table-column>
+                <el-table-column prop="password" label="密码" width="180"></el-table-column>
+                <el-table-column prop="email" label="邮箱" width="180"></el-table-column>
+                <el-table-column prop="avator" label="头像" width="180">
+                    <template slot-scope="scope">
+                        <img class="avators" :src="scope.row.avator" alt="">
+                    </template>
+                </el-table-column>
+                <el-table-column prop="isAdmin" label="管理员" width="180">
+                    <!-- 加入switch开关 -->
+                    <template slot-scope="scope">
+                        <el-switch v-model="scope.row.isAdmin"
+                        active-color="#409eff"
+                        @change="changeAdmin(scope.row.id)"
+                        >
+                        </el-switch>
+                    </template>
+                </el-table-column>
+            </el-table>
         </el-card>
 
         <!-- 添加用户对话框 -->
@@ -64,6 +87,9 @@
 <script>
 export default {
     name: 'Users',
+    created () {
+        this.getAllUsers()
+    },
     data () {
         return {
             // 两个上传相关的参数
@@ -94,8 +120,9 @@ export default {
                     { required: true, message: "请输入邮箱", trigger: 'blur' },
                     { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change'}
                 ]
-
-            }
+            },
+            // 用户列表数据
+            usersList: []
         }
     },
     methods: {
@@ -144,6 +171,16 @@ export default {
         // switch切换状态
         switchChanged(value) {
             this.userModel.isAdmin = value
+        },
+        // 获取所有数据
+        async getAllUsers() {
+            const { data: res } = await this.$http.get('/api/user/getAllUsers')
+            this.usersList = res.data
+            console.log(this.usersList);
+        },
+        // 编辑管理员
+        changeAdmin(userId) {
+
         }
     }
 }
@@ -158,5 +195,11 @@ export default {
     .btns {
         display: flex;
         justify-content: flex-end;
+    }
+
+    .avators {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
     }
 </style>
